@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "record-lpcm16": "^3.0.1",
-    "pocketsphinx-js": "^1.0.0"
+    "@opencode-ai/plugin": "1.14.29"
   }
 }

@@ -1,7 +1,5 @@
 ---
-description: Voice input for chat
+description: Record voice input (5 seconds)
 ---
 
-Voice input is currently not implemented. Please type your message instead.
-
-This command is a placeholder for future voice input functionality.
+Starting voice recording for 5 seconds. Please speak clearly into your microphone.
