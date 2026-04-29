@@ -9,6 +9,7 @@ MODEL_PATH = ".opencode/vosk-model/vosk-model-small-en-us-0.15"
 
 # Параметры аудио
 RATE = 16000
+CHUNK = 4000
 
 def record_and_recognize(duration=5):
     try:
@@ -24,17 +25,19 @@ def record_and_recognize(duration=5):
         
         print("Processing...", file=sys.stderr)
         
-        # Распознаём речь
-        audio_bytes = audio.tobytes()
-        if recognizer.AcceptWaveform(audio_bytes):
-            result = json.loads(recognizer.Result())
-            if result.get("text"):
-                print(result["text"])
+        # Обрабатываем аудио по частям
+        audio_data = audio.flatten()
+        for i in range(0, len(audio_data), CHUNK):
+            chunk = audio_data[i:i+CHUNK]
+            chunk_bytes = chunk.tobytes()
+            recognizer.AcceptWaveform(chunk_bytes)
         
         # Финальный результат
         final_result = json.loads(recognizer.FinalResult())
         if final_result.get("text"):
             print(final_result["text"])
+        else:
+            print("", file=sys.stderr)
         
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
