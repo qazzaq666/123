@@ -5,7 +5,7 @@ import numpy as np
 from vosk import Model, KaldiRecognizer
 
 # Путь к модели
-MODEL_PATH = ".opencode/vosk-model/vosk-model-small-en-us-0.15"
+MODEL_PATH = ".opencode/vosk-model/vosk-model-small-ru-0.22"
 
 # Параметры аудио
 RATE = 16000
@@ -17,13 +17,9 @@ def record_and_recognize(duration=5):
         model = Model(MODEL_PATH)
         recognizer = KaldiRecognizer(model, RATE)
         
-        print("Recording...", file=sys.stderr)
-        
         # Записываем аудио
         audio = sd.rec(int(duration * RATE), samplerate=RATE, channels=1, dtype='int16')
         sd.wait()
-        
-        print("Processing...", file=sys.stderr)
         
         # Обрабатываем аудио по частям
         audio_data = audio.flatten()
@@ -36,8 +32,6 @@ def record_and_recognize(duration=5):
         final_result = json.loads(recognizer.FinalResult())
         if final_result.get("text"):
             print(final_result["text"])
-        else:
-            print("", file=sys.stderr)
         
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
