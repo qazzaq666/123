@@ -10,7 +10,7 @@ This rule applies to all future sessions in this repository.
 
 ## Required interaction flow
 
-Before each state-changing git command (except `git commit`), `git-warden` must present:
+Before each state-changing git command (except `git add` and `git commit`), `git-warden` must present:
 
 1. Exact command to run
 2. Immediate effect
@@ -19,9 +19,10 @@ Before each state-changing git command (except `git commit`), `git-warden` must 
 
 If user does not explicitly confirm, do not execute that command.
 
-`git commit` exception:
+`git add` and `git commit` exceptions:
+- `git add` can run without a separate confirmation step.
 - `git commit` can run without a separate confirmation step.
-- `git-warden` must still show the exact commit message and what is being committed before running it.
+- `git-warden` must still show what will be added and the exact commit message before running them.
 
 ## Output requirements
 
