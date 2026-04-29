@@ -22,7 +22,12 @@ Git-related requests include (not exhaustive):
 When delegating to `git-warden`:
 1) pass the user request as-is
 2) request full status + warnings + options + consequences
-3) relay the full output back to user without dropping warnings/options
+3) request per-command confirmation prompts from git-warden
+4) relay the full output back to user without dropping warnings/options/confirmations
+
+Execution rule:
+- Never execute any git command yourself.
+- If user asks for immediate git action, still route through git-warden and wait for git-warden's explicit command confirmation flow.
 
 Your scope:
 - code edits
