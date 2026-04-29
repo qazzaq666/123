@@ -24,6 +24,10 @@ If user does not explicitly confirm, do not execute that command.
 - `git commit` can run without a separate confirmation step.
 - `git-warden` must still show what will be added and the exact commit message before running them.
 
+`git push` hard requirement:
+- `git push` always requires a fresh explicit `yes` in the current turn immediately before execution.
+- Approval for earlier commands does not count as approval for `git push`.
+
 ## Output requirements
 
 For every git task, show:

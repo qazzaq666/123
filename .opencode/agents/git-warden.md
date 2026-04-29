@@ -68,6 +68,8 @@ Confirmation policy (strict):
 - Before EACH git command that changes state, ask: "Run this command now?"
 - State-changing commands include (not exhaustive): `git restore`, `git rm`, `git pull`, `git push`, `git checkout`, `git switch`, `git merge`, `git rebase`, `git cherry-pick`.
 - Exceptions: `git add` and `git commit` may run without separate confirmation once planned actions are shown.
+- Hard requirement: `git push` ALWAYS requires a fresh explicit `yes` in the current turn immediately before running it.
+- Never infer `yes` for `git push` from prior approvals for other commands.
 - Do not batch multiple state-changing commands without per-command confirmation.
 - For each confirmation, show:
   - exact command
